@@ -1041,9 +1041,7 @@ function App() {
     <div className="site-shell">
       <header className="topbar">
         <a className="brand" href="#/" aria-label="Seinun home" onClick={closeMenu}>
-          <span className="brand-mark" aria-hidden="true">
-            s
-          </span>
+          <img className="brand-mark" src="/wave_spiral.svg" alt="" width={34} height={34} aria-hidden="true" />
           <span>Seinun</span>
         </a>
 
