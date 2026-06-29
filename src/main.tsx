@@ -3,16 +3,14 @@ import type { ReactNode } from "react";
 import { createRoot } from "react-dom/client";
 import {
   ArrowRight,
-  ArrowUpRight,
   Award,
   BadgeCheck,
   BarChart3,
   BookOpen,
   Brain,
-  Cloud,
+  Compass,
   CornerUpLeft,
   Cpu,
-  Database,
   FileSearch,
   Github,
   HelpCircle,
@@ -20,13 +18,16 @@ import {
   Linkedin,
   Mail,
   Menu,
-  Network,
   RefreshCw,
   Sparkles,
   TrendingUp,
   Upload,
   X,
 } from "lucide-react";
+import "@fontsource-variable/inter";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
 import "./styles.css";
 
 /* ---------------------------------- data --------------------------------- */
@@ -35,85 +36,81 @@ const EMAIL = "ajey@seinun.com";
 
 const capabilities = [
   {
-    icon: Sparkles,
-    title: "GenAI & RAG applications",
-    text: "Document intelligence, AI assistants, and retrieval systems that reason over your data.",
+    icon: Compass,
+    title: "AI Strategy & Workflow Discovery",
+    text: "AI isn't one-size-fits-all. We study how your business operates, find the specific places where AI will create meaningful value, and build a clear roadmap, so every investment goes where it counts.",
+  },
+  {
+    icon: Cpu,
+    title: "Intelligent Business Applications",
+    text: "AI tools built around your data and your people. Systems that answer questions, automate repetitive decisions, and surface what your team needs to know, without replacing the people who make the real calls.",
   },
   {
     icon: BarChart3,
-    title: "Analytics & BI",
-    text: "Dashboards and decision tools that turn raw data into action.",
+    title: "Analytics & Decision Intelligence",
+    text: "Turn raw data into clarity. Dashboards and reporting systems that connect directly to your operations and help your team make confident, well-informed decisions every day.",
   },
   {
     icon: TrendingUp,
-    title: "Predictive ML",
-    text: "Forecasting, scoring, and early-warning models with explainable outputs.",
-  },
-  {
-    icon: Cloud,
-    title: "Data & cloud engineering",
-    text: "Pipelines and cloud-native (AWS) infrastructure behind the apps.",
+    title: "Predictive & Proactive AI",
+    text: "Anticipate problems before they arrive. Systems that forecast outcomes, flag risks early, and give your business the lead time to act, not just react.",
   },
 ];
 
 const proofPoints = [
   {
     icon: BarChart3,
-    title: "British Airways data systems",
-    text: "Automated pipelines that cut reporting cycle time 40% (at TCS).",
+    title: "Enterprise Data Systems",
+    text: "Built automated reporting infrastructure for British Airways (via TCS) that freed teams from manual data work and gave them time back for decisions that matter.",
   },
   {
     icon: FileSearch,
-    title: "Production RAG for a client",
-    text: "Document-analysis system that cut manual review 70%.",
+    title: "Document Intelligence for a Client",
+    text: "An AI system that read and assessed business documents against acceptance criteria, dramatically reducing the time teams spent on manual review.",
   },
   {
     icon: Award,
-    title: "Shipped award-winning AI",
-    text: "LoopMind, 1st place at the AWS GenAI Hackathon.",
+    title: "Award-Winning AI Product",
+    text: "LoopMind, 1st place at the AWS GenAI Hackathon 2026. Proof that accessible, well-designed AI can compete at the highest level.",
   },
   {
     icon: BadgeCheck,
-    title: "AWS Certified",
-    text: "Solutions Architect · AI Practitioner.",
+    title: "Certified & Accountable",
+    text: "AWS Certified Solutions Architect and AI Practitioner. We hold ourselves to the same standards we set for the work.",
   },
 ];
 
 const services = [
   {
-    title: "GenAI & RAG application development",
-    text: "Retrieval-augmented assistants, document analysis, and AI features grounded in your data.",
-    stack: ["Python", "OpenAI / Gemini", "LangChain", "pgvector / ChromaDB", "FastAPI"],
+    title: "AI Assistants & Document Intelligence",
+    text: "Give your team an AI that knows your business. We build systems that read your documents, answer questions from your internal knowledge, and help your people work faster, without replacing them. The goal is always more capable people, not fewer people.",
   },
   {
-    title: "Data analytics & BI",
-    text: "KPI dashboards, reporting pipelines, and analysis that connects to real decisions.",
-    stack: ["SQL", "Python", "Power BI", "Tableau", "Streamlit"],
+    title: "Analytics & Business Intelligence",
+    text: "Stop reporting on the past and start understanding it. We build dashboards and data systems that connect directly to your operations, so your team can make confident, informed decisions, not just collect numbers.",
   },
   {
-    title: "Predictive & explainable ML",
-    text: "Forecasting, risk scoring, and segmentation with interpretable outputs (SHAP).",
-    stack: ["scikit-learn", "XGBoost / LightGBM", "SHAP"],
+    title: "Predictive & Early-Warning Systems",
+    text: "Know what's coming before it arrives. We build systems that forecast outcomes, flag risks, and surface patterns, giving your business the lead time to act, not just react.",
   },
   {
-    title: "Data pipelines & cloud (AWS)",
-    text: "ETL/ELT, Databricks/Delta Lake, and serverless deployment on AWS.",
-    stack: ["AWS", "Databricks", "Delta Lake", "Serverless"],
+    title: "Data Infrastructure & Cloud",
+    text: "AI is only as good as the data behind it. We build the pipelines and cloud infrastructure that keeps your data clean, reliable, and ready to power the applications your business depends on.",
   },
 ];
 
 const workSteps = [
   {
-    title: "Scope",
-    text: "A short call to define the problem and what success looks like.",
+    title: "Discover",
+    text: "We map your workflow, understand your goals, and identify the specific places where AI will create real productivity and profit gains. You'll know exactly what we're building, and why, before any work begins.",
   },
   {
     title: "Build",
-    text: "Iterative delivery with working demos, not status decks.",
+    text: "We build in stages and show you working results at every step, not status updates. You stay informed and in control throughout the process.",
   },
   {
     title: "Hand off",
-    text: "Documented, deployable, yours to own.",
+    text: "Everything we build is yours. Documented, ready to deploy, and designed so your team can own and operate it independently going forward.",
   },
 ];
 
@@ -124,8 +121,8 @@ const products = [
     tagline: "AI learning platform",
     status: "In active development",
     proof: "1st place · AWS GenAI Hackathon (UT Arlington, 2026)",
-    text: "Ingests your material and generates concept cards with rendered formulas and tables, then schedules spaced-repetition review and answers your follow-up questions.",
-    audience: "For students and self-learners who want to retain what they study.",
+    text: "An AI learning platform that turns your own material into a structured active recall experience: with spaced review, connected explanations, and every card anchored to the source it came from.",
+    audience: "For students, professionals, and lifelong learners who want knowledge that actually sticks.",
   },
   {
     name: "Modular Orbit",
@@ -149,24 +146,24 @@ const products = [
 
 const whatWeDo = [
   {
-    icon: TrendingUp,
-    title: "ML engineering services",
-    text: "Predictive models, classification pipelines, feature-engineering frameworks, and model-evaluation infrastructure across tabular, NLP, and time-series domains. Production-ready outputs, not notebook experiments.",
+    icon: Compass,
+    title: "AI Strategy & Workflow Analysis",
+    text: "We don't assume we know where AI fits in your business. We find out, by understanding your operations, identifying high-value opportunities, and designing a practical roadmap that makes sense for your team and your goals.",
   },
   {
     icon: BarChart3,
-    title: "Data & analytics",
-    text: "The pipelines, dashboards, and analytical systems that make data usable: ETL workflows, SQL-intensive reporting infrastructure, KPI dashboards, and domain analytics for finance, operations, and customer behavior.",
+    title: "Analytics & Data Systems",
+    text: "Clean data and clear reporting are the foundation of any good AI system. We build the infrastructure and dashboards that make your information usable, so decisions are based on reality, not gut feel.",
   },
   {
     icon: Sparkles,
-    title: "GenAI & RAG applications",
-    text: "LLM-powered applications grounded in real business problems: document intelligence, embedding-based search, agentic workflows, and retrieval-augmented generation. Architecture-first, not demo-first.",
+    title: "Intelligent Business Applications",
+    text: "AI tools built around your actual business context. Systems that help your people work faster, make better decisions, and spend less time on work that shouldn't require human attention.",
   },
   {
     icon: Brain,
-    title: "Applied AI products",
-    text: "Seinun builds its own AI products alongside client work. LoopMind, the flagship, is an active-recall learning platform built on a connected document-to-recall architecture.",
+    title: "Applied AI Products",
+    text: "Seinun builds its own AI products alongside client work. LoopMind, our flagship, is an accessible learning platform built to put the benefits of AI-powered education within reach of everyone: students, professionals, and lifelong learners.",
   },
 ];
 
@@ -176,121 +173,89 @@ const loopSteps = [
   {
     icon: Upload,
     title: "Ingest",
-    text: "Upload a PDF, paste text, or generate a document. LoopMind parses and chunks the source, then uses an LLM to rewrite each chunk into a concept-level reading unit called a Tile. Tiles group into topic sections that become learning milestones.",
+    text: "Upload any document or paste your material. LoopMind reads it, organises it into structured concepts, and prepares it for review. Your content, your way.",
   },
   {
     icon: BookOpen,
     title: "Read",
-    text: "The reader surfaces Tiles in a vertical deck. Mark a Tile read, save it, bookmark it, annotate it, or ask a doubt from it. After 15 seconds as the primary visible Tile it auto-marks read. Drill into child concepts, filter by saved or doubt Tiles, and jump to the source text at any point.",
+    text: "Move through your material in a focused, distraction-free reader. Mark concepts, save what matters, and flag anything you want to come back to.",
   },
   {
     icon: HelpCircle,
-    title: "Doubt & explain",
-    text: "When something is unclear, raise a doubt from the Tile. LoopMind resolves it and creates a child Tile anchored to the concept that caused the confusion. Explain something back and the system generates an explanation Tile with feedback. Both produce recall cards, so the moment of confusion becomes testable.",
+    title: "Ask & Understand",
+    text: "When something is unclear, ask LoopMind directly. It resolves your question and creates a linked concept, so the answer becomes part of your ongoing review, not a dead end.",
   },
   {
     icon: RefreshCw,
     title: "Recall",
-    text: "The recall feed surfaces Atomic Learning Units using SM-2 spaced repetition, scoped globally, by document, by section, or by tile. It prioritizes due, weak, user-initiated, and low-mastery cards. Reviews update both SRS state and mastery.",
+    text: "Your review feed surfaces the right concepts at the right time, intelligently scheduled so what you're most likely to forget comes up before you do.",
   },
   {
     icon: CornerUpLeft,
     title: "Back to source",
-    text: "Every card knows which Tile and which document created it. When recall fails, you don't lose context. You go back to where the concept lives, re-read it, and re-enter the loop.",
+    text: "Every review card knows exactly which concept and document it came from. When recall fails, you return to the original context in one tap. Context always within reach.",
   },
 ];
 
 const loopDifferentiators = [
   {
     icon: Layers,
-    title: "Source spine, not a card pile",
-    text: "Every learning artifact, whether a Tile, doubt, flashcard, or ALU, stays anchored to the document and concept that produced it. That's the architectural decision everything else depends on.",
+    title: "Everything stays connected to its source",
+    text: "Every concept, question, and review card is anchored to the document it came from. You always know where your knowledge lives.",
   },
   {
     icon: HelpCircle,
-    title: "Doubt-driven encoding",
-    text: "Curiosity and confusion are the strongest encoding signals. Doubts become child Tiles with recall cards, and explain-back actions generate testable artifacts. Highlighting alone produces nothing.",
+    title: "Questions become knowledge",
+    text: "When you're confused, that confusion is captured and turned into a learning opportunity, not ignored. Doubt is a feature, not a friction point.",
   },
   {
     icon: TrendingUp,
-    title: "Retrieval effort that scales",
-    text: "Review formats aren't fixed. As cards mature, the system progresses from multiple-choice recognition to typed cloze and free recall. MCQ distractors are designed as plausible misconceptions, so a wrong answer reveals the actual misunderstanding.",
+    title: "Review that adapts as you improve",
+    text: "As your knowledge deepens, the way you're tested evolves, building toward deeper, more durable retention over time.",
   },
   {
-    icon: Network,
-    title: "Semantic recall routing",
-    text: "pgvector-powered semantic search surfaces related cards during review, so when you see a card you can find conceptually adjacent material without navigating manually.",
+    icon: RefreshCw,
+    title: "Surfaces what you're about to forget",
+    text: "Intelligent scheduling brings up the right material at the right moment, so your review time goes further and forgetting happens less.",
   },
-];
-
-const loopHood = [
-  {
-    icon: Database,
-    title: "Backend",
-    text: "A FastAPI service backed by PostgreSQL with pgvector for embedding storage and semantic retrieval. Long-running AI tasks like ingestion, tile authoring, card batch generation, and image generation run through a durable database-backed job queue on a concurrent 4-worker Docker service. Jobs are idempotent: retries are safe and partial failures don't corrupt completed work.",
-  },
-  {
-    icon: Layers,
-    title: "Frontend",
-    text: "A React Native application built with Expo and TypeScript, targeting both mobile and web. The reader, recall feed, collection manager, and home dashboard are native screens with smooth navigation and dwell-based read tracking.",
-  },
-  {
-    icon: Cpu,
-    title: "AI layer",
-    text: "Gemini handles text generation, embeddings (768-dimension via gemini-embedding-001), and image generation, with provider branches for OpenAI and Ollama. The original hackathon version ran on AWS Bedrock.",
-  },
-  {
-    icon: BadgeCheck,
-    title: "Tested end to end",
-    text: "Coverage spans SRS scheduling, feed scoring, review-format progression, semantic similarity, chunking, section grouping, tile trees, document ingestion, job-retry behavior, card-quality validation, and deletion cascades.",
-  },
-];
-
-const loopStack = [
-  "FastAPI",
-  "React Native / Expo (TypeScript)",
-  "PostgreSQL",
-  "pgvector",
-  "Gemini",
-  "Docker Compose",
 ];
 
 /* --------------------------------- routing -------------------------------- */
 
 const pageMeta: Record<string, { title: string; description: string }> = {
   "/": {
-    title: "Seinun · Applied AI consulting & products",
+    title: "Seinun · AI that works for your business",
     description:
-      "Seinun designs and builds context-aware AI applications: RAG systems, analytics and BI, and predictive ML. End to end, from model to production.",
+      "Seinun bridges businesses and people with AI that works. We study your workflow, find where AI creates real value, and build it end to end. No guesswork, no slideware.",
   },
   "/services": {
     title: "Services · Seinun",
     description:
-      "GenAI & RAG development, analytics & BI, predictive ML, and AWS data engineering, built end to end by a one-person studio.",
+      "We find where AI works for your business, then build it: AI assistants and document intelligence, analytics, predictive systems, and data infrastructure.",
   },
   "/products": {
     title: "Products · Seinun",
     description:
-      "LoopMind, Modular Orbit, and Resume Tailor: context-aware AI products built by Seinun.",
+      "Built by Seinun: AI products made to be genuinely accessible and useful, including LoopMind, our award-winning learning platform.",
   },
   "/loopmind": {
     title: "LoopMind · Active recall, connected to the source",
     description:
-      "LoopMind is an active-recall learning platform where every flashcard, doubt, and review traces back to the exact concept and document that created it.",
+      "LoopMind is an AI learning platform where every flashcard, doubt, and review traces back to the exact concept and document that created it.",
   },
   "/about": {
     title: "About · Seinun",
     description:
-      "The person behind Seinun: a data scientist and AI engineer building production systems teams actually use.",
+      "Bridging the gap between AI and the people who need it. Seinun builds people-first AI, ethically and practically.",
   },
   "/contact": {
     title: "Contact · Seinun",
-    description: "Tell Seinun about your project or the problem you're trying to solve.",
+    description: "Tell Seinun about your project or where you're trying to fit AI. We respond within 1-2 business days.",
   },
 };
 
 function useRoute() {
-  const read = () => window.location.hash.replace(/^#/, "") || "/";
+  const read = () => (window.location.hash.replace(/^#/, "") || "/").split("?")[0] || "/";
   const [route, setRoute] = useState(read);
 
   useEffect(() => {
@@ -367,19 +332,21 @@ function HomePage() {
           <Reveal>
             <Eyebrow>Applied AI consulting & products</Eyebrow>
             <h1>
-              Applied AI that ships,<br />
-              <span className="hero-accent">not slideware.</span>
+              AI that works for your business,<br />
+              <span className="hero-accent">not just in theory.</span>
             </h1>
             <p className="hero-lede">
-              Seinun designs and builds context-aware AI applications: retrieval (RAG) systems,
-              analytics and BI, and predictive ML. End to end, from model to production.
+              Most businesses know AI is powerful, but don't know where it fits, what's realistic,
+              or how to make it profitable. Seinun bridges that gap. We study your workflow,
+              identify where AI creates real value, and build it end to end. No guesswork. No
+              slideware. Just AI that actually works for you.
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#/contact">
-                Start a project <ArrowRight size={18} aria-hidden="true" />
+                Start a conversation <ArrowRight size={18} aria-hidden="true" />
               </a>
               <a className="button button-secondary" href="#/products">
-                See what I've built
+                See what we've built
               </a>
             </div>
           </Reveal>
@@ -389,8 +356,8 @@ function HomePage() {
       <section className="section-pad section-block">
         <Reveal>
           <div className="section-heading">
-            <Eyebrow>What I do</Eyebrow>
-            <h2>Context-aware AI, built end to end.</h2>
+            <Eyebrow>What we do</Eyebrow>
+            <h2>AI that fits your workflow, not the other way around.</h2>
           </div>
         </Reveal>
         <div className="capability-grid">
@@ -415,15 +382,15 @@ function HomePage() {
               <span className="pill pill-light">Built by Seinun</span>
               <h2>LoopMind</h2>
               <p>
-                An AI learning platform that turns your own material into concept cards and
-                spaced-repetition review.
+                An AI learning platform that transforms any material into an active recall
+                experience, making knowledge retention accessible to everyone.
               </p>
               <span className="featured-proof">
-                <Award size={16} aria-hidden="true" /> 1st place, AWS GenAI Hackathon
+                <Award size={16} aria-hidden="true" /> 1st place · AWS GenAI Hackathon
               </span>
             </div>
             <a className="button button-inverse" href="#/loopmind">
-              View LoopMind <ArrowUpRight size={18} aria-hidden="true" />
+              View LoopMind <ArrowRight size={18} aria-hidden="true" />
             </a>
           </article>
         </Reveal>
@@ -432,8 +399,8 @@ function HomePage() {
       <section className="section-pad section-block">
         <Reveal>
           <div className="section-heading">
-            <Eyebrow>What I've delivered</Eyebrow>
-            <h2>Proof, not credentials.</h2>
+            <Eyebrow>What we've delivered</Eyebrow>
+            <h2>Results, not promises.</h2>
           </div>
         </Reveal>
         <div className="proof-grid">
@@ -452,7 +419,7 @@ function HomePage() {
       <section className="section-pad section-block">
         <Reveal>
           <div className="closing-band">
-            <h2>Have a problem that needs working software, not a deck?</h2>
+            <h2>Not sure where AI fits in your business? That's exactly where we start.</h2>
             <a className="button button-primary" href="#/contact">
               Get in touch <ArrowRight size={18} aria-hidden="true" />
             </a>
@@ -469,11 +436,12 @@ function ServicesPage() {
       <section className="page-hero section-pad">
         <Reveal>
           <Eyebrow>Services</Eyebrow>
-          <h1>One studio. End to end.</h1>
+          <h1>We find where AI works for you. Then we build it.</h1>
           <p className="page-lede">
-            Seinun is a one-person studio that builds applied AI systems end to end. It's the
-            same capability behind the products, available for your project. You work directly
-            with the person doing the work.
+            AI isn't a plug-and-play solution. Every business is different: its processes, its
+            people, its data. Seinun starts by understanding your workflow and identifying
+            precisely where AI will create measurable value. Then we build it, end to end, and
+            hand it over ready to use.
           </p>
         </Reveal>
       </section>
@@ -490,11 +458,6 @@ function ServicesPage() {
                     <p>{service.text}</p>
                   </div>
                 </div>
-                <ul className="stack-list" aria-label="Technology stack">
-                  {service.stack.map((tech) => (
-                    <li key={tech}>{tech}</li>
-                  ))}
-                </ul>
               </article>
             </Reveal>
           ))}
@@ -505,8 +468,8 @@ function ServicesPage() {
         <Reveal>
           <div className="process-panel">
             <div>
-              <Eyebrow>How I work</Eyebrow>
-              <h2>Demos over decks, at every step.</h2>
+              <Eyebrow>How we work</Eyebrow>
+              <h2>We start with your problem, not our tools.</h2>
             </div>
             <ol>
               {workSteps.map((step) => (
@@ -525,9 +488,9 @@ function ServicesPage() {
       <section className="section-pad section-block">
         <Reveal>
           <div className="closing-band">
-            <h2>Ready when you are.</h2>
+            <h2>Ready to find out where AI fits in your business?</h2>
             <a className="button button-primary" href="#/contact">
-              Tell me about your project <ArrowRight size={18} aria-hidden="true" />
+              Tell us about your project <ArrowRight size={18} aria-hidden="true" />
             </a>
           </div>
         </Reveal>
@@ -544,8 +507,9 @@ function ProductsPage() {
           <Eyebrow>Products</Eyebrow>
           <h1>Built by Seinun.</h1>
           <p className="page-lede">
-            These are products I'm actively building, and proof of the same capability I bring
-            to client work: context-aware AI applications, built end to end.
+            These are products we're building from the ground up, applying the same thinking we
+            bring to client work. Each one exists to make AI genuinely accessible and useful to
+            the people who need it most.
           </p>
         </Reveal>
       </section>
@@ -573,11 +537,11 @@ function ProductsPage() {
                   {product.featured ? (
                     <>
                       <a className="button button-primary" href="#/loopmind">
-                        Explore LoopMind <ArrowUpRight size={18} aria-hidden="true" />
+                        Explore LoopMind <ArrowRight size={18} aria-hidden="true" />
                       </a>
                       <a
                         className="button button-secondary"
-                        href={`mailto:${EMAIL}?subject=LoopMind%20waitlist`}
+                        href="#/contact?intent=loopmind-waitlist"
                       >
                         Join the waitlist
                       </a>
@@ -585,9 +549,9 @@ function ProductsPage() {
                   ) : (
                     <a
                       className="button button-secondary"
-                      href={`mailto:${EMAIL}?subject=${encodeURIComponent(product.name)}`}
+                      href={`#/contact?intent=${product.name.toLowerCase().replace(/\s+/g, "-")}`}
                     >
-                      Learn more
+                      Get notified
                     </a>
                   )}
                 </div>
@@ -595,16 +559,6 @@ function ProductsPage() {
             </Reveal>
           ))}
         </div>
-      </section>
-
-      <section className="section-pad section-block">
-        <Reveal>
-          <p className="tech-note">
-            All three run on a shared foundation of FastAPI, React, Postgres + pgvector
-            retrieval, and LLM reasoning: the same context-aware-AI stack behind Seinun's
-            consulting work.
-          </p>
-        </Reveal>
       </section>
     </>
   );
@@ -616,10 +570,11 @@ function AboutPage() {
       <section className="page-hero section-pad">
         <Reveal>
           <Eyebrow>About</Eyebrow>
-          <h1>Who we are.</h1>
+          <h1>Bridging the gap between AI and the people who need it.</h1>
           <p className="page-lede">
-            Seinun is an AI and data-analytics company founded to build applied AI products and
-            deliver ML engineering services to clients.
+            Most businesses and individuals know AI is changing the world, but feel locked out of
+            it. It seems too technical, too expensive, or too disconnected from how they actually
+            work. Seinun exists to change that.
           </p>
         </Reveal>
       </section>
@@ -627,22 +582,33 @@ function AboutPage() {
       <section className="section-pad section-block about-layout">
         <Reveal className="about-body">
           <p>
-            Seinun works at the intersection of data infrastructure, machine learning, and
-            generative AI, with a focus on systems that are production-grounded, technically
-            rigorous, and built to solve real problems.
+            We believe AI should be accessible to every business and every person, not just those
+            with the resources or the technical background to figure it out alone. That's not just
+            a positioning statement. It's the reason Seinun exists.
           </p>
           <p>
-            Its work spans the full stack: from ETL pipelines and analytical dashboards to
-            RAG-based document intelligence, spaced-repetition learning systems, and agentic AI
-            workflows. Seinun builds for clients and for itself, which means its products are
-            shaped by the same engineering standards it applies to client work.
+            AI should make people's lives better. It should augment what people are capable of,
+            not make them feel replaced, overwhelmed, or left behind. We don't see AI as a
+            substitute for human judgement, creativity, or leadership. We see it as a tool that,
+            in the right hands and the right places, makes people significantly more capable.
+          </p>
+          <p>
+            A team working alongside intelligent systems is far stronger than either one alone.
+            More people with AI working for them beats fewer people trying to compete against it.
+            Our job is to find that balance for your business, and build it, ethically,
+            practically, and in a way that puts your people first.
+          </p>
+          <p>
+            We don't arrive with a predetermined solution. We start by understanding how you work,
+            what you're trying to achieve, and where AI genuinely fits. Then we build it end to
+            end, and hand it over so you own it.
           </p>
         </Reveal>
         <Reveal delay={80} className="about-aside">
           <blockquote className="mission-card">
             <p>
-              "Production-grounded, technically rigorous, and built to solve real problems: the
-              same standard for client work and our own products."
+              "AI should exist to make people's lives better, not to make them feel inferior or
+              replaced. We find that balance, and we build it."
             </p>
           </blockquote>
           <a className="button button-primary" href="#/contact">
@@ -669,42 +635,32 @@ function AboutPage() {
           <Reveal delay={80} className="about-body">
             <p>
               Ajey is the founder of Seinun LLC and the engineer behind its products and client
-              engagements. He holds a Master of Science in Business Analytics from the University
-              of Texas at Arlington, graduating with a 4.0 GPA and induction into Beta Gamma
-              Sigma, the top honors society for AACSB-accredited business programs. Before
-              founding Seinun, he spent two years as a Data Analyst at Tata Consultancy Services
-              on the <strong>British Airways</strong> account, where he built Python ingestion
-              pipelines, owned ETL development in Informatica, delivered Power BI and Excel KPI
-              dashboards across six enterprise applications, and maintained SQL data-integrity
-              workflows over 2M+ records during a system migration.
+              work. He founded Seinun with a clear conviction: that AI should be accessible to
+              every business and every person who can benefit from it, not just those who already
+              understand it.
             </p>
             <p>
-              His analytical work spans credit-risk modeling, behavioral segmentation, natural
-              language processing, and large-scale ensemble machine learning. He built an
-              end-to-end portfolio-monitoring dashboard on a 240K-row synthetic account dataset,
-              using SQL window functions to surface roll-rate matrices and vintage curves, and an
-              XGBoost early-warning model with SHAP explainability for 3-month-forward
-              delinquency risk. In NLP, he built a pipeline that processed 65M+ social-media
-              posts using Sentence-BERT embeddings, UMAP, and BERTopic clustering to extract 871
-              coherent topics at scale.
+              That belief shapes everything about how Seinun works. We don't lead with technology.
+              We lead with questions: What are you trying to accomplish? Where does your team lose
+              time? What decisions would you make differently if you had better information? The
+              answers tell us where AI belongs, and where it doesn't.
             </p>
             <p>
-              His most technically demanding project engineered 159 features across 8 relational
-              tables for a credit-default model and trained a 4-model stacked ensemble (LightGBM,
-              XGBoost, CatBoost, PyTorch MLP) that reached a final OOF ROC-AUC of 0.792 by
-              diagnosing and resolving a meta-learner calibration failure through rank-based
-              stacking inputs. On the client side, he built a RAG document-intelligence system
-              for Neviton that ingested business-requirement documents, embedded them with
-              Docling and pgvector, and produced per-criteria gap verdicts with confidence scores
-              across 30+ acceptance criteria per document, cutting manual review time by 70%.
+              Ajey has worked across industries and domains, building systems that connect data,
+              intelligence, and real business outcomes. His work spans enterprise data
+              infrastructure, AI-powered document analysis, and machine learning applications,
+              always with the same standard: production-ready, ethically grounded, and built to be
+              genuinely useful.
             </p>
             <p>
-              Ajey is an AWS Certified Solutions Architect (SAA-C03) and AWS Certified AI
-              Practitioner (AIF-C01), with further certifications from Microsoft Azure (DevOps
-              Engineer Expert, Data Fundamentals) and from IBM and Google in data science and
-              analytics. In 2026, his team won 1st place at the UTA Business Analytics Symposium
-              AWS GenAI Hackathon, the project that became the foundation for{" "}
-              <a href="#/loopmind">LoopMind</a>.
+              In 2026, his team won 1st place at the UTA Business Analytics Symposium AWS GenAI
+              Hackathon. That project became <a href="#/loopmind">LoopMind</a>, a product built on
+              the belief that quality AI-powered learning should be available to anyone, not just
+              those who can afford premium tools.
+            </p>
+            <p>
+              Ajey holds certifications from AWS, Microsoft Azure, IBM, and Google in cloud
+              architecture, AI, and data science.
             </p>
           </Reveal>
         </div>
@@ -714,7 +670,7 @@ function AboutPage() {
         <Reveal>
           <div className="section-heading">
             <Eyebrow>What we do</Eyebrow>
-            <h2>From pipelines to applied AI products.</h2>
+            <h2>From strategy to working AI: fully delivered.</h2>
           </div>
         </Reveal>
         <div className="capability-grid">
@@ -749,9 +705,9 @@ function LoopMindPage() {
             Most learning apps generate content and leave you with a pile. LoopMind is built
             differently. Every flashcard, doubt, explanation, and review traces back to the exact
             concept and document that created it. That connection is the difference between a card
-            pile and a learning system.
+            pile and a real learning system.
           </p>
-          <span className="status-dot loop-status">Coming soon, currently in active development</span>
+          <span className="status-dot loop-status">Coming soon · Currently in active development</span>
         </Reveal>
       </section>
 
@@ -764,9 +720,9 @@ function LoopMindPage() {
             </div>
             <p>
               Generating AI flashcards isn't learning either. What works is retrieval practice:
-              being forced to recall something before you look it up again, but only when it
-              targets the concepts you actually struggle with, connected to the material where the
-              struggle happened. Most tools give you cards. LoopMind gives you a loop.
+              being forced to recall something from memory, working through the difficulty, and
+              succeeding. LoopMind is built around that science. And it keeps every moment of
+              recall connected to where the knowledge came from, so you never lose the thread.
             </p>
           </div>
         </Reveal>
@@ -801,7 +757,7 @@ function LoopMindPage() {
         <Reveal>
           <div className="section-heading">
             <Eyebrow>What makes it different</Eyebrow>
-            <h2>A source spine, not a card pile.</h2>
+            <h2>A learning system, not a card pile.</h2>
           </div>
         </Reveal>
         <div className="capability-grid">
@@ -821,53 +777,22 @@ function LoopMindPage() {
 
       <section className="section-pad section-block">
         <Reveal>
-          <div className="section-heading">
-            <Eyebrow>Under the hood</Eyebrow>
-            <h2>Built for reliability and extensibility.</h2>
-          </div>
-        </Reveal>
-        <div className="proof-grid">
-          {loopHood.map((item, i) => (
-            <Reveal key={item.title} delay={i * 60}>
-              <article className="proof-card">
-                <item.icon size={20} aria-hidden="true" />
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={120}>
-          <ul className="stack-list loop-stack" aria-label="Technology stack">
-            {loopStack.map((tech) => (
-              <li key={tech}>{tech}</li>
-            ))}
-          </ul>
-        </Reveal>
-      </section>
-
-      <section className="section-pad section-block">
-        <Reveal>
           <article className="featured-band">
             <div className="featured-copy">
               <span className="pill pill-light">Status</span>
               <h2>In active development</h2>
               <p>
-                The core read-recall loop, tile-based reader, spaced-repetition engine, doubt and
-                explain-back flows, semantic card retrieval, and background job infrastructure are
-                all implemented and tested. The team is working on product polish, deployment, and
-                onboarding ahead of a public release.
+                The core learning experience (reading, recall, doubt resolution, and spaced
+                review) is fully built and tested. We're focused on product polish and onboarding
+                ahead of a public launch. Early access is available now.
               </p>
               <span className="featured-proof">
                 <Award size={16} aria-hidden="true" /> 1st place · AWS GenAI Hackathon (UT
                 Arlington, March 2026)
               </span>
             </div>
-            <a
-              className="button button-inverse"
-              href={`mailto:${EMAIL}?subject=LoopMind%20early%20access`}
-            >
-              Request early access <ArrowUpRight size={18} aria-hidden="true" />
+            <a className="button button-inverse" href="#/contact?intent=loopmind-early-access">
+              Request early access <ArrowRight size={18} aria-hidden="true" />
             </a>
           </article>
         </Reveal>
@@ -876,8 +801,23 @@ function LoopMindPage() {
   );
 }
 
+const contactIntents: Record<string, string> = {
+  "loopmind-waitlist": "I'd like to join the LoopMind waitlist.",
+  "loopmind-early-access": "I'd like to request early access to LoopMind.",
+  "modular-orbit": "I'd like to be notified when Modular Orbit is available.",
+  "resume-tailor": "I'd like to be notified when Resume Tailor is available.",
+};
+
+function readContactIntent() {
+  const hash = window.location.hash;
+  const query = hash.includes("?") ? hash.slice(hash.indexOf("?") + 1) : "";
+  const intent = new URLSearchParams(query).get("intent") ?? "";
+  return contactIntents[intent] ?? "";
+}
+
 function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [prefill] = useState(readContactIntent);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -910,9 +850,11 @@ function ContactPage() {
     <section className="page-hero section-pad contact-layout">
       <Reveal className="contact-copy">
         <Eyebrow>Contact</Eyebrow>
-        <h1>Let's talk.</h1>
+        <h1>Let's find out what AI can do for you.</h1>
         <p className="page-lede">
-          Tell me about your project or the problem you're trying to solve. I respond within 1–2
+          Whether you have a specific project in mind or you're just starting to explore where AI
+          fits in your business, reach out. We'll have an honest conversation about what's
+          possible, what's realistic, and what's genuinely worth building. We respond within 1–2
           business days.
         </p>
         <div className="contact-direct">
@@ -954,6 +896,7 @@ function ContactPage() {
             <textarea
               name="message"
               placeholder="A few lines about the problem, the data, or the product idea."
+              defaultValue={prefill}
               rows={5}
               required
             />
@@ -1041,8 +984,7 @@ function App() {
     <div className="site-shell">
       <header className="topbar">
         <a className="brand" href="#/" aria-label="Seinun home" onClick={closeMenu}>
-          <img className="brand-mark" src="/wave_spiral.svg" alt="" width={34} height={34} aria-hidden="true" />
-          <span>Seinun</span>
+          <img className="brand-logo" src="/seinun-logo.png" alt="Seinun" width={125} height={30} />
         </a>
 
         <button
@@ -1080,8 +1022,8 @@ function App() {
       <footer className="footer section-pad">
         <div className="footer-top">
           <div className="footer-brand">
-            <span className="footer-wordmark">Seinun</span>
-            <p>Applied AI consulting & products.</p>
+            <img className="footer-logo" src="/seinun-logo.png" alt="Seinun" width={108} height={26} />
+            <p>Bridging businesses and people with AI that works.</p>
           </div>
           <div className="footer-contact">
             <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
