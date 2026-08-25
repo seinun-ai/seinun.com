@@ -8,18 +8,27 @@ import {
   BarChart3,
   BookOpen,
   Brain,
+  ClipboardCheck,
+  Coins,
   Compass,
   CornerUpLeft,
   Cpu,
+  Database,
+  ExternalLink,
   FileSearch,
+  FileText,
+  Gauge,
   Github,
   HelpCircle,
   Layers,
   Linkedin,
+  ListChecks,
   Mail,
   Menu,
   RefreshCw,
+  ShieldCheck,
   Sparkles,
+  Target,
   TrendingUp,
   Upload,
   X,
@@ -33,6 +42,8 @@ import "./styles.css";
 /* ---------------------------------- data --------------------------------- */
 
 const EMAIL = "ajey@seinun.com";
+const MAESTRO_SITE = "https://maestrocareerstudio.com";
+const MAESTRO_REPO = "https://github.com/seinun-ai/maestro-career-studio";
 
 const capabilities = [
   {
@@ -114,33 +125,65 @@ const workSteps = [
   },
 ];
 
-const products = [
+type ProductAction = {
+  label: string;
+  href: string;
+  kind: "primary" | "secondary";
+  external?: boolean;
+};
+
+type Product = {
+  name: string;
+  featured: boolean;
+  tagline: string;
+  status: string;
+  live: boolean;
+  proof: string | null;
+  text: string;
+  audience: string | null;
+  actions: ProductAction[];
+};
+
+const products: Product[] = [
+  {
+    name: "Maestro Career Studio",
+    featured: true,
+    tagline: "Job-application studio",
+    status: "Released · open source",
+    live: true,
+    proof: null,
+    text: "Not another AI rewriter. Maestro keeps one record of what you actually did, extracts the real requirements from a posting, scores the fit with an engine that has no model in the scoring path, and typesets the result into a real PDF on your own machine.",
+    audience: "Apache-2.0, runs on localhost, and costs about a penny an application in tokens.",
+    actions: [
+      { label: "What it does", href: "#/maestro", kind: "primary" },
+      { label: "Open the site", href: MAESTRO_SITE, kind: "secondary", external: true },
+      { label: "Source on GitHub", href: MAESTRO_REPO, kind: "secondary", external: true },
+    ],
+  },
   {
     name: "LoopMind",
-    featured: true,
+    featured: false,
     tagline: "AI learning platform",
-    status: "In active development",
+    status: "Coming soon · in active development",
+    live: false,
     proof: "1st place · AWS GenAI Hackathon (UT Arlington, 2026)",
     text: "An AI learning platform that turns your own material into a structured active recall experience: with spaced review, connected explanations, and every card anchored to the source it came from.",
     audience: "For students, professionals, and lifelong learners who want knowledge that actually sticks.",
+    actions: [
+      { label: "Explore LoopMind", href: "#/loopmind", kind: "primary" },
+      { label: "Join the waitlist", href: "#/contact?intent=loopmind-waitlist", kind: "secondary" },
+    ],
   },
   {
     name: "Modular Orbit",
     featured: false,
     tagline: "Personal AI workspace",
     status: "In development",
+    live: false,
     proof: null,
     text: "Organizes your tasks, notes, plans, and goals, and builds a model of your priorities so its suggestions get more relevant over time.",
     audience: null,
-  },
-  {
-    name: "Resume Tailor",
-    featured: false,
-    tagline: "Job-fit analysis",
-    status: "In development",
-    proof: null,
-    text: "Not another AI rewriter. It extracts structured requirements from a job description, runs a gap analysis against your experience, scores fit, and tracks which version you sent where.",
-    audience: null,
+    actions: [{ label: "Get notified", href: "#/contact?intent=modular-orbit", kind: "secondary" }],
   },
 ];
 
@@ -163,7 +206,67 @@ const whatWeDo = [
   {
     icon: Brain,
     title: "Applied AI Products",
-    text: "Seinun builds its own AI products alongside client work. LoopMind, our flagship, is an accessible learning platform built to put the benefits of AI-powered education within reach of everyone: students, professionals, and lifelong learners.",
+    text: "Seinun builds its own AI products alongside client work. Maestro Career Studio is out now and open source: a local-first job-application studio that scores, tailors, and typesets without guessing. LoopMind, our learning platform, is close behind.",
+  },
+];
+
+/* --------------------------------- maestro -------------------------------- */
+
+const maestroStats = [
+  { value: "≈1¢", label: "per tailored application" },
+  { value: "83", label: "MCP tools for agents" },
+  { value: "100%", label: "local, nothing uploaded" },
+  { value: "Apache-2.0", label: "yours to fork and keep" },
+];
+
+const maestroFlow = [
+  {
+    icon: Database,
+    title: "Build the record once",
+    text: "Drop in every resume variant you own. Maestro merges the duplicates, clusters the bullets, and builds one Career Knowledge Base. That record is the evidence base for everything after it.",
+  },
+  {
+    icon: FileText,
+    title: "Keep a base resume per track",
+    text: "One base per role you actually target, not one per job. Approved points compose word for word, so a generated resume stays defensible.",
+  },
+  {
+    icon: Target,
+    title: "Capture the posting and score it",
+    text: "Paste a job or grab it from the board you're reading. Maestro extracts the real requirements, scores the fit against each base, and flags the knock-outs before you spend an evening on it.",
+  },
+  {
+    icon: ListChecks,
+    title: "Close the gaps",
+    text: "A gap is a requirement your resume doesn't evidence yet. Maestro asks pointed questions to surface what's true but unwritten, and what you answer becomes evidence you keep.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Render, review, track",
+    text: "Cover letter, screening answers, and a typeset PDF compiled on your machine. Every AI edit arrives as a diff you can revert, and the tracker carries the application from saved to offer.",
+  },
+];
+
+const maestroPillars = [
+  {
+    icon: Gauge,
+    title: "A score that can't drift",
+    text: "Most resume checkers ask a language model, so the same document scores differently every run. Maestro has no model anywhere in the scoring path: same resume, same posting, same number and same breakdown.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Evidence, not invention",
+    text: "Bullets compose from points you approved, verbatim. Rewriting is a separate step that asks first, and every edit shows up as a diff you can revert before it goes anywhere.",
+  },
+  {
+    icon: Database,
+    title: "It runs on your machine",
+    text: "Every service binds to localhost. No account, no upload, no server holding your career history. Your whole record exports to a single readable file if you walk away.",
+  },
+  {
+    icon: Coins,
+    title: "About a penny an application",
+    text: "You bring your own API key and pay for the tokens you spend. No subscription, no usage tier, no seat.",
   },
 ];
 
@@ -243,6 +346,11 @@ const pageMeta: Record<string, { title: string; description: string }> = {
     description:
       "LoopMind is an AI learning platform where every flashcard, doubt, and review traces back to the exact concept and document that created it.",
   },
+  "/maestro": {
+    title: "Maestro Career Studio · Local-first, evidence-backed job applications",
+    description:
+      "Maestro Career Studio is an open-source job-application studio that runs on your machine. Deterministic scoring, evidence-backed tailoring, and a typeset PDF for about a penny an application.",
+  },
   "/about": {
     title: "About · Seinun",
     description:
@@ -254,13 +362,28 @@ const pageMeta: Record<string, { title: string; description: string }> = {
   },
 };
 
+/** Old links that should land somewhere real instead of the 404 page. */
+const redirects: Record<string, string> = {
+  "/resume-tailor": "/maestro",
+  "/maestro-career-studio": "/maestro",
+};
+
 function useRoute() {
-  const read = () => (window.location.hash.replace(/^#/, "") || "/").split("?")[0] || "/";
+  const read = () => {
+    const path = (window.location.hash.replace(/^#/, "") || "/").split("?")[0] || "/";
+    return redirects[path] ?? path;
+  };
   const [route, setRoute] = useState(read);
 
   useEffect(() => {
     const onHash = () => {
-      setRoute(read());
+      const path = (window.location.hash.replace(/^#/, "") || "/").split("?")[0] || "/";
+      const target = redirects[path];
+      if (target) {
+        window.location.replace(`#${target}`);
+        return;
+      }
+      setRoute(path);
       window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
     };
     window.addEventListener("hashchange", onHash);
@@ -346,7 +469,7 @@ function HomePage() {
                 Start a conversation <ArrowRight size={18} aria-hidden="true" />
               </a>
               <a className="button button-secondary" href="#/products">
-                See what we've built
+                See what we've shipped
               </a>
             </div>
           </Reveal>
@@ -379,19 +502,53 @@ function HomePage() {
         <Reveal>
           <article className="featured-band">
             <div className="featured-copy">
-              <span className="pill pill-light">Built by Seinun</span>
-              <h2>LoopMind</h2>
+              <span className="pill pill-light">Built by Seinun · Released</span>
+              <h2>Maestro Career Studio</h2>
               <p>
-                An AI learning platform that transforms any material into an active recall
-                experience, making knowledge retention accessible to everyone.
+                A job-application studio that runs entirely on your machine. One record of what
+                you actually did, scoring that never guesses, and a typeset PDF at the end. About
+                a penny an application.
               </p>
-              <span className="featured-proof">
-                <Award size={16} aria-hidden="true" /> 1st place · AWS GenAI Hackathon
+              <span className="featured-meta">
+                <ShieldCheck size={16} aria-hidden="true" /> Apache-2.0 · open source · nothing
+                leaves your laptop
               </span>
             </div>
-            <a className="button button-inverse" href="#/loopmind">
-              View LoopMind <ArrowRight size={18} aria-hidden="true" />
-            </a>
+            <div className="featured-actions">
+              <a className="button button-inverse" href="#/maestro">
+                View Maestro <ArrowRight size={18} aria-hidden="true" />
+              </a>
+              <a
+                className="button button-ghost"
+                href={MAESTRO_SITE}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Live site <ExternalLink size={17} aria-hidden="true" />
+              </a>
+            </div>
+          </article>
+        </Reveal>
+
+        <Reveal delay={80}>
+          <article className="oss-band">
+            <div>
+              <span className="pill">Coming soon</span>
+              <h3>LoopMind</h3>
+              <p>
+                An AI learning platform that turns your own material into an active recall
+                experience. 1st place at the AWS GenAI Hackathon, and in active development ahead
+                of a public launch.
+              </p>
+            </div>
+            <div className="oss-actions">
+              <a className="button button-primary" href="#/loopmind">
+                View LoopMind <ArrowRight size={18} aria-hidden="true" />
+              </a>
+              <a className="button button-secondary" href="#/contact?intent=loopmind-waitlist">
+                Join the waitlist
+              </a>
+            </div>
           </article>
         </Reveal>
       </section>
@@ -507,9 +664,9 @@ function ProductsPage() {
           <Eyebrow>Products</Eyebrow>
           <h1>Built by Seinun.</h1>
           <p className="page-lede">
-            These are products we're building from the ground up, applying the same thinking we
-            bring to client work. Each one exists to make AI genuinely accessible and useful to
-            the people who need it most.
+            These are products we build from the ground up, applying the same thinking we bring
+            to client work. Each one exists to make AI genuinely accessible and useful to the
+            people who need it most. One of them is already out and open source.
           </p>
         </Reveal>
       </section>
@@ -524,7 +681,9 @@ function ProductsPage() {
                     <span className="pill">{product.tagline}</span>
                     <h2>{product.name}</h2>
                   </div>
-                  <span className="status-dot">{product.status}</span>
+                  <span className={product.live ? "status-dot" : "status-dot status-building"}>
+                    {product.status}
+                  </span>
                 </header>
                 <p>{product.text}</p>
                 {product.audience && <p className="product-audience">{product.audience}</p>}
@@ -534,26 +693,21 @@ function ProductsPage() {
                   </span>
                 )}
                 <div className="product-actions">
-                  {product.featured ? (
-                    <>
-                      <a className="button button-primary" href="#/loopmind">
-                        Explore LoopMind <ArrowRight size={18} aria-hidden="true" />
-                      </a>
-                      <a
-                        className="button button-secondary"
-                        href="#/contact?intent=loopmind-waitlist"
-                      >
-                        Join the waitlist
-                      </a>
-                    </>
-                  ) : (
+                  {product.actions.map((action) => (
                     <a
-                      className="button button-secondary"
-                      href={`#/contact?intent=${product.name.toLowerCase().replace(/\s+/g, "-")}`}
+                      key={action.label}
+                      className={`button button-${action.kind}`}
+                      href={action.href}
+                      {...(action.external ? { target: "_blank", rel: "noreferrer" } : {})}
                     >
-                      Get notified
+                      {action.label}
+                      {action.external ? (
+                        <ExternalLink size={17} aria-hidden="true" />
+                      ) : action.kind === "primary" ? (
+                        <ArrowRight size={18} aria-hidden="true" />
+                      ) : null}
                     </a>
-                  )}
+                  ))}
                 </div>
               </article>
             </Reveal>
@@ -801,11 +955,174 @@ function LoopMindPage() {
   );
 }
 
+function MaestroPage() {
+  return (
+    <>
+      <section className="page-hero section-pad maestro-hero">
+        <Reveal>
+          <Eyebrow>Maestro Career Studio</Eyebrow>
+          <h1>
+            Write down what you did once.<br />
+            <span className="hero-accent">Apply with it forever.</span>
+          </h1>
+          <p className="page-lede">
+            A job search burns the same effort over and over: rebuild the resume, rewrite the
+            cover letter, answer the same screening question for the fourth time. Maestro keeps
+            one record of what you actually did and builds every tailored application from it,
+            on your own machine, for about a penny a go.
+          </p>
+          <span className="status-dot maestro-status">Released · Apache-2.0 · open source</span>
+          <div className="hero-actions">
+            <a
+              className="button button-primary"
+              href={MAESTRO_SITE}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open maestrocareerstudio.com <ExternalLink size={17} aria-hidden="true" />
+            </a>
+            <a
+              className="button button-secondary"
+              href={MAESTRO_REPO}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Github size={17} aria-hidden="true" /> Source on GitHub
+            </a>
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="section-pad section-block">
+        <Reveal>
+          <div className="maestro-stats">
+            {maestroStats.map((stat) => (
+              <div key={stat.label} className="maestro-stat">
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="section-pad section-block">
+        <Reveal>
+          <div className="closing-band loop-problem">
+            <div>
+              <Eyebrow>The premise</Eyebrow>
+              <h2>Your effort should compound, not evaporate.</h2>
+            </div>
+            <p>
+              The average opening draws hundreds of applications, and screens increasingly flag
+              resumes that read like a machine wrote them. Volume stopped working, so depth is
+              the only lever left. Depth is only affordable when last month's work is still
+              sitting there, ready to reuse.
+            </p>
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="section-pad section-block">
+        <Reveal>
+          <div className="section-heading">
+            <Eyebrow>How it works</Eyebrow>
+            <h2>One record, then every application off it.</h2>
+          </div>
+        </Reveal>
+        <div className="loop-steps">
+          {maestroFlow.map((step, i) => (
+            <Reveal key={step.title} delay={i * 50}>
+              <article className="loop-step">
+                <span className="loop-step-index">{String(i + 1).padStart(2, "0")}</span>
+                <div className="icon-tile">
+                  <step.icon size={22} aria-hidden="true" />
+                </div>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-pad section-block">
+        <Reveal>
+          <div className="section-heading">
+            <Eyebrow>What makes it different</Eyebrow>
+            <h2>Nothing in it guesses on your behalf.</h2>
+          </div>
+        </Reveal>
+        <div className="capability-grid">
+          {maestroPillars.map((item, i) => (
+            <Reveal key={item.title} delay={i * 60}>
+              <article className="capability-card">
+                <div className="icon-tile">
+                  <item.icon size={22} aria-hidden="true" />
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-pad section-block">
+        <Reveal>
+          <article className="featured-band">
+            <div className="featured-copy">
+              <span className="pill pill-light">Open source</span>
+              <h2>Read the docs, or read the code.</h2>
+              <p>
+                The full product site covers the scoring engine, the privacy model, the agent
+                tooling, and what a run actually costs. The repository is Apache-2.0, so you can
+                run it, fork it, and keep it.
+              </p>
+            </div>
+            <div className="featured-actions">
+              <a
+                className="button button-inverse"
+                href={MAESTRO_SITE}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Visit the site <ExternalLink size={17} aria-hidden="true" />
+              </a>
+              <a
+                className="button button-ghost"
+                href={MAESTRO_REPO}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Github size={17} aria-hidden="true" /> GitHub
+              </a>
+            </div>
+          </article>
+        </Reveal>
+      </section>
+
+      <section className="section-pad section-block">
+        <Reveal>
+          <div className="closing-band">
+            <h2>Want something like this built for your business?</h2>
+            <a className="button button-primary" href="#/contact?intent=maestro">
+              Talk to us <ArrowRight size={18} aria-hidden="true" />
+            </a>
+          </div>
+        </Reveal>
+      </section>
+    </>
+  );
+}
+
 const contactIntents: Record<string, string> = {
   "loopmind-waitlist": "I'd like to join the LoopMind waitlist.",
   "loopmind-early-access": "I'd like to request early access to LoopMind.",
   "modular-orbit": "I'd like to be notified when Modular Orbit is available.",
-  "resume-tailor": "I'd like to be notified when Resume Tailor is available.",
+  maestro: "I'd like to talk about Maestro Career Studio.",
 };
 
 function readContactIntent() {
@@ -946,6 +1263,7 @@ function NotFoundPage() {
 const navLinks = [
   { href: "#/services", label: "Services", route: "/services" },
   { href: "#/products", label: "Products", route: "/products" },
+  { href: "#/maestro", label: "Maestro", route: "/maestro" },
   { href: "#/loopmind", label: "LoopMind", route: "/loopmind" },
   { href: "#/about", label: "About", route: "/about" },
   { href: "#/contact", label: "Contact", route: "/contact" },
@@ -969,6 +1287,9 @@ function App() {
       break;
     case "/loopmind":
       page = <LoopMindPage />;
+      break;
+    case "/maestro":
+      page = <MaestroPage />;
       break;
     case "/about":
       page = <AboutPage />;
