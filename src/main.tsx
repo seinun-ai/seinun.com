@@ -44,6 +44,10 @@ import "./styles.css";
 const EMAIL = "ajey@seinun.com";
 const MAESTRO_SITE = "https://maestrocareerstudio.com";
 const MAESTRO_REPO = "https://github.com/seinun-ai/maestro-career-studio";
+const MCP_LINE =
+  "Works with Claude Code and Claude Desktop, ChatGPT, and Cursor via MCP.";
+const SITE_DESCRIPTION =
+  "Seinun LLC builds Maestro Career Studio, with 83 agent tools that work with Claude Code, Claude Desktop, ChatGPT, and Cursor via MCP, and LoopMind, an award-winning learning platform.";
 
 const capabilities = [
   {
@@ -140,6 +144,7 @@ type Product = {
   live: boolean;
   proof: string | null;
   text: string;
+  note?: string;
   audience: string | null;
   actions: ProductAction[];
 };
@@ -153,6 +158,7 @@ const products: Product[] = [
     live: true,
     proof: null,
     text: "Not another AI rewriter. Maestro keeps one record of what you actually did, extracts the real requirements from a posting, scores the fit with an engine that has no model in the scoring path, and typesets the result into a real PDF on your own machine.",
+    note: MCP_LINE,
     audience: "Apache-2.0, runs on localhost, and costs about a penny an application in tokens.",
     actions: [
       { label: "What it does", href: "#/maestro", kind: "primary" },
@@ -206,7 +212,7 @@ const whatWeDo = [
   {
     icon: Brain,
     title: "Applied AI Products",
-    text: "Seinun builds its own AI products alongside client work. Maestro Career Studio is out now and open source: a local-first job-application studio that scores, tailors, and typesets without guessing. LoopMind, our learning platform, is close behind.",
+    text: "Seinun builds its own AI products alongside client work. Maestro Career Studio is out now and open source: a local-first job-application studio with 83 tools for agents. It works with Claude Code and Claude Desktop, ChatGPT, and Cursor via MCP. LoopMind, our learning platform, is close behind.",
   },
 ];
 
@@ -328,8 +334,7 @@ const loopDifferentiators = [
 const pageMeta: Record<string, { title: string; description: string }> = {
   "/": {
     title: "Seinun · AI that works for your business",
-    description:
-      "Seinun bridges businesses and people with AI that works. We study your workflow, find where AI creates real value, and build it end to end. No guesswork, no slideware.",
+    description: SITE_DESCRIPTION,
   },
   "/services": {
     title: "Services · Seinun",
@@ -339,7 +344,7 @@ const pageMeta: Record<string, { title: string; description: string }> = {
   "/products": {
     title: "Products · Seinun",
     description:
-      "Built by Seinun: AI products made to be genuinely accessible and useful, including LoopMind, our award-winning learning platform.",
+      "Built by Seinun LLC: Maestro Career Studio, with 83 agent tools over MCP for Claude Code, Claude Desktop, ChatGPT, and Cursor, and LoopMind, an award-winning learning platform.",
   },
   "/loopmind": {
     title: "LoopMind · Active recall, connected to the source",
@@ -349,12 +354,12 @@ const pageMeta: Record<string, { title: string; description: string }> = {
   "/maestro": {
     title: "Maestro Career Studio · Local-first, evidence-backed job applications",
     description:
-      "Maestro Career Studio is an open-source job-application studio that runs on your machine. Deterministic scoring, evidence-backed tailoring, and a typeset PDF for about a penny an application.",
+      "Maestro Career Studio is an open-source job-application studio from Seinun LLC, with 83 agent tools that work with Claude Code, Claude Desktop, ChatGPT, and Cursor via MCP.",
   },
   "/about": {
     title: "About · Seinun",
     description:
-      "Bridging the gap between AI and the people who need it. Seinun builds people-first AI, ethically and practically.",
+      "Seinun LLC builds people-first AI, including Maestro Career Studio and LoopMind. Maestro works with Claude Code, Claude Desktop, ChatGPT, and Cursor via MCP.",
   },
   "/contact": {
     title: "Contact · Seinun",
@@ -393,8 +398,11 @@ function useRoute() {
   useEffect(() => {
     const meta = pageMeta[route] ?? { title: "Page not found · Seinun", description: "" };
     document.title = meta.title;
-    const tag = document.querySelector('meta[name="description"]');
-    if (tag && meta.description) tag.setAttribute("content", meta.description);
+    if (meta.description) {
+      document.querySelector('meta[name="description"]')?.setAttribute("content", meta.description);
+      document.querySelector('meta[property="og:description"]')?.setAttribute("content", meta.description);
+      document.querySelector('meta[property="og:title"]')?.setAttribute("content", meta.title);
+    }
   }, [route]);
 
   return route;
@@ -509,6 +517,7 @@ function HomePage() {
                 you actually did, scoring that never guesses, and a typeset PDF at the end. About
                 a penny an application.
               </p>
+              <p className="featured-note">{MCP_LINE}</p>
               <span className="featured-meta">
                 <ShieldCheck size={16} aria-hidden="true" /> Apache-2.0 · open source · nothing
                 leaves your laptop
@@ -686,6 +695,7 @@ function ProductsPage() {
                   </span>
                 </header>
                 <p>{product.text}</p>
+                {product.note && <p className="product-note">{product.note}</p>}
                 {product.audience && <p className="product-audience">{product.audience}</p>}
                 {product.proof && (
                   <span className="featured-proof">
@@ -972,6 +982,7 @@ function MaestroPage() {
             on your own machine, for about a penny a go.
           </p>
           <span className="status-dot maestro-status">Released · Apache-2.0 · open source</span>
+          <p className="mcp-callout">{MCP_LINE}</p>
           <div className="hero-actions">
             <a
               className="button button-primary"
@@ -1345,6 +1356,9 @@ function App() {
           <div className="footer-brand">
             <img className="footer-logo" src="/seinun-logo.png" alt="Seinun" width={108} height={26} />
             <p>Bridging businesses and people with AI that works.</p>
+            <p className="footer-products">
+              <a href={MAESTRO_SITE} target="_blank" rel="noreferrer">Maestro Career Studio</a>{`. ${MCP_LINE}`}
+            </p>
           </div>
           <div className="footer-contact">
             <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
